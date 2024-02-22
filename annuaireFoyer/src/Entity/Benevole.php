@@ -24,11 +24,8 @@ class Benevole
     #[ORM\Column(length: 15)]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 150)]
-    private ?string $mail = null;
-
-    #[ORM\Column(length: 400)]
-    private ?string $password = null;
+    #[ORM\Column(length: 120, nullable: true)]
+    private ?string $poste = null;
 
     public function getId(): ?int
     {
@@ -71,26 +68,14 @@ class Benevole
         return $this;
     }
 
-    public function getMail(): ?string
+    public function getPoste(): ?string
     {
-        return $this->mail;
+        return $this->poste;
     }
 
-    public function setMail(string $mail): static
+    public function setPoste(?string $poste): static
     {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
+        $this->poste = $poste;
 
         return $this;
     }
