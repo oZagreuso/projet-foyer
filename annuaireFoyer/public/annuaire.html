@@ -38,6 +38,17 @@
                 </tr>
             </tbody>
         </table>
+        <div id="modal" ref="modal">
+            <article v-if="selectedBenevole != null">
+                <button id="btn" class="custom-button" @click="closeModal">Fermer</button>
+                <header>
+                    <p>{{ selectedBenevole.nom }}</p>                   
+                    <p>{{ selectedBenevole.prenom }}</p>
+                    <p>{{ selectedBenevole.telephone }}</p>
+                    <p>{{ selectedBenevole.poste }}</p>
+                </header>
+            </article>          
+        </div>
 
     </main>
     

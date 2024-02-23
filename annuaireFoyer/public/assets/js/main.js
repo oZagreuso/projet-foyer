@@ -23,7 +23,16 @@ const app = {
             } catch (error) {
                 console.error('Erreur lors du chargement des données:', error.message);
             }
-        }
+        },
+        openModal(event) {
+            let benevoleId = event.target.dataset.id;
+            this.selectedBenevole = this.listeBenevoles.find(x => x.id == benevoleId);
+            console.log(this.$refs);
+            this.$refs.modal.style.display = 'block';
+        },
+        closeModal() {
+            this.$refs.modal.style.display ='none';
+        } 
     }
 }
 
