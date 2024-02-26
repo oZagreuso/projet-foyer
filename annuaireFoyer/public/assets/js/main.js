@@ -5,7 +5,8 @@ const app = {
     data() {
         return {
             listeBenevoles: [],
-            selectedBenevole: null
+            selectedBenevole: null,
+            benevoleChoice: null
         }
     },
     async mounted() {
@@ -24,6 +25,7 @@ const app = {
                 console.error('Erreur lors du chargement des données:', error.message);
             }
         },
+       
         openModal(event) {
             let benevoleId = event.target.dataset.id;
             this.selectedBenevole = this.listeBenevoles.find(x => x.id == benevoleId);
@@ -32,8 +34,31 @@ const app = {
         },
         closeModal() {
             this.$refs.modal.style.display ='none';
-        } 
+        },
+        selectBenevole(event) {
+            console.log(event.target.value);
+            if(parseInt(event.target.value) > 0 ) {
+                this.benevoleChoice = this.listeBenevoles.find(x => x.id == event.target.value);
+            } else {
+                this.sbenevoleChoice = null;
+            }
+            
+        }
+        
+    },
+    computed: { nbBenevole() {
+        return this.listeBenevoles.length;
     }
 }
 
+}
+
 Vue.createApp(app).mount('#app');
+
+
+// console.log(event.target.value);
+// if(parseInt(event.target.value) > 0 ) {
+//     this.selectedBenevole = this.listeBenevoles.find(x => x.id == event.target.value);
+// } else {
+//     this.selectedBenevole = null;
+// }

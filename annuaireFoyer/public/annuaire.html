@@ -2,17 +2,16 @@
 <html lang="fr-fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/main.js" type="module"></script>
     <link rel="stylesheet" href="./assets/css/style.css">  
     <title>Annuaire Bénévoles CRM</title>
 </head>
 
-<body>
+<body >
     <header>
-        <section>
+        <section class="benHeader">
             <div class="title">
                 <h1>Annuaire des bénévoles du foyer</h1>
             </div>
@@ -22,7 +21,24 @@
         </section>
     </header>
     <main id="app">
-        <table class="table table-success table-striped">
+        <div class="nbrBenevole"><h2>Il existe: {{nbBenevole}} bénévoles</h2></div>
+   
+        <section class="management"> 
+            <h2>Gestion bénévoles</h2>
+            <ol>
+                <li>Sélectionnez un bénévole</li>
+                <li>Editez le bénévole</li>
+            </ol>  
+            <select @change="selectBenevole" classe="liste">
+                <option class="optionText" value="0"><p class="white">Selectionnez un bénévole</p></option>
+                <option class="optionText" v-for="(benevole, index) in listeBenevoles" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
+            </select>
+                <span v-if="benevoleChoice != null">
+                    <input type="text" v-model="benevoleChoice.poste"> 
+                </span>
+        </section> 
+        <section class="benevoleTab">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -38,6 +54,14 @@
                 </tr>
             </tbody>
         </table>
+        </section>
+        <section class="benevoleDiv">
+            <div class="benevole" v-for="benevole of listeBenevoles">                            
+                    <span>Id :</span> {{ benevole.id }}
+                    <span>Téléphone :</span> {{ benevole.telephone }}
+                    <span>Poste : </span> {{ benevole.poste }}
+            </div>
+        </section>
         <div id="modal" ref="modal">
             <article v-if="selectedBenevole != null">
                 <button id="btn" class="custom-button" @click="closeModal">Fermer</button>
@@ -48,8 +72,8 @@
                     <p>{{ selectedBenevole.poste }}</p>
                 </header>
             </article>          
-        </div>
-
+        </div>  
+         
     </main>
     
 </body>
