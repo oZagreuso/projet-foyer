@@ -6,10 +6,14 @@ const app = {
     data() {
         return {
             listeBenevoles: [],
+            listeBenevolesFiltered: [],
+            inputBenevole: [],
             listeResponsables: [],
             selectedBenevole: null,
             benevoleChoice: null,
-            responsable: null
+            responsable: null,
+            targetedBenevole: null
+         
         }
     },
     async mounted() {
@@ -29,6 +33,7 @@ const app = {
             } catch (error) {
                 console.error('Erreur lors du chargement des données:', error.message);
             }
+            this.listeBenevolesFiltered = [...this.listeBenevoles];
         },
        
         openModal(event) {
@@ -52,23 +57,29 @@ const app = {
         createListeResponsables() {
             this.listeResponsables = this.listeBenevoles.filter(benevole => benevole.poste !== undefined);
             console.log(this.listeResponsables);
+        }, 
+        
+        filterBenevole(event) {
+            if (parseInt(event.target.value) > 0) {
+                this.listeBenevolesFiltered = this.listeBenevoles.filter(benevole => this.inputBenevole.includes(benevole.id));
+            }
+            else {
+                this.listeBenevolesFiltered = this.listeBenevoles;
+            }
         },
-        selectResponsable(event) {  
-            console.log(event.target.value);         
-            let responsableId = event.target.dataset.id;
-            this.responsable = this.listeResponsables.find(x => x.id == responsableId);          
+        
+        
+
     
-                  
-                        this.responsable.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              
-            
-             
-            },
-            computed: { 
+        
+        
+      
+        
+        
+   
+            },    computed: { 
                 nbBenevole() {
                 return this.listeBenevoles.length;
-              
-            }
         
          
         }

@@ -28,7 +28,7 @@
             <ol>
                 <li>Sélectionnez un bénévole</li>
             </ol>  
-            <select @change="openModal" classe="liste">
+            <select @change="filterBenevole" v-model="inputBenevole" classe="liste">
                 <option class="optionText" value="0"><p class="white">Selectionnez un bénévole</p></option>
                 <option class="optionText" v-for="(benevole, index) in listeBenevoles" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
             </select>
@@ -37,7 +37,7 @@
                 <ol>
                     <li>Sélectionnez un responsable</li>
                 </ol>  
-                <select @change=" selectResponsable" classe="listeRes">
+                <select @change="" classe="listeRes">
                     <option class="optionText" value="0"><p class="white">Selectionnez un responsable</p></option>
                     <option class="optionText"  v-for="(benevole, index) in listeResponsables" :key="index" :value="benevole.id">{{ benevole.poste }}</option>
                 </select>
@@ -53,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="benevole of listeBenevoles">
+                <tr v-for="benevole of listeBenevolesFiltered">
                     <td>{{ benevole.nom }}</td>
                     <td>{{ benevole.prenom }}</td>
                     <td><button :data-id="benevole.id" @click="openModal" class="button">Fiche</button></td>                           
