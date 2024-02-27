@@ -1,5 +1,5 @@
 import { Benevole } from "./Benevole.js";
-import { AnnuaireRepository } from "./annuaireRepository.js";
+import { AnnuaireRepository } from "./AnnuaireRepository.js";
 
 const app = {
     data() {
@@ -20,6 +20,8 @@ const app = {
             try {
                 const apiData = await annuaireRepository.fetchBenevolesData();
                 this.listeBenevoles = apiData.map(benevole => new Benevole(benevole));
+                console.log(this.listeBenevoles);
+                this.listeBenevoles.sort((a, b) => a.nom.localeCompare(b.nom));
                 console.log(this.listeBenevoles);
             } catch (error) {
                 console.error('Erreur lors du chargement des données:', error.message);
@@ -44,6 +46,7 @@ const app = {
             }
             
         }
+        
         
     },
     computed: { nbBenevole() {

@@ -3,11 +3,24 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use App\Repository\BenevoleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BenevoleRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new GetCollection(uriTemplate:"/benevoles"),
+        new Get(uriTemplate:"/benevoles/{id}"),
+        new Post(uriTemplate:"/benevoles"),
+        new Patch(uriTemplate:"/benevoles/{id}"),
+        new Delete(uriTemplate:"/benevoles/{id}")
+    ]
+)]
 class Benevole
 {
     #[ORM\Id]
