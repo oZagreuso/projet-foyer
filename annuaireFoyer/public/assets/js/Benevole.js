@@ -8,7 +8,8 @@ class Benevole
         this.telephone = benevole.telephone;
         this.poste = benevole.poste;
 
-    }
+    }    
+       
 }
 
 export { Benevole }

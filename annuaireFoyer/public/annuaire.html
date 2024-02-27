@@ -23,19 +23,25 @@
     <main id="app">
         <div class="nbrBenevole"><h2>Il existe: {{nbBenevole}} bénévoles</h2></div>
    
-        <section class="management"> 
-            <h2>Gestion bénévoles</h2>
+        <section class="management">
+            <div class="listeNom" >           
             <ol>
                 <li>Sélectionnez un bénévole</li>
-                <li>Editez le bénévole</li>
             </ol>  
-            <select @change="selectBenevole" classe="liste">
+            <select @change="openModal" classe="liste">
                 <option class="optionText" value="0"><p class="white">Selectionnez un bénévole</p></option>
                 <option class="optionText" v-for="(benevole, index) in listeBenevoles" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
             </select>
-                <span v-if="benevoleChoice != null">
-                    <input type="text" v-model="benevoleChoice.poste"> 
-                </span>
+            </div> 
+            <div class="listePoste">
+                <ol>
+                    <li>Sélectionnez un responsable</li>
+                </ol>  
+                <select @change=" selectResponsable" classe="listeRes">
+                    <option class="optionText" value="0"><p class="white">Selectionnez un responsable</p></option>
+                    <option class="optionText"  v-for="(benevole, index) in listeResponsables" :key="index" :value="benevole.id">{{ benevole.poste }}</option>
+                </select>
+            </div>
         </section> 
         <section class="benevoleTab">
         <table class="table">
@@ -50,7 +56,7 @@
                 <tr v-for="benevole of listeBenevoles">
                     <td>{{ benevole.nom }}</td>
                     <td>{{ benevole.prenom }}</td>
-                    <td><button :data-id="benevole.id" @click="openModal" class="button">Détails</button></td>                           
+                    <td><button :data-id="benevole.id" @click="openModal" class="button">Fiche</button></td>                           
                 </tr>
             </tbody>
         </table>
