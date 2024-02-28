@@ -325,3 +325,15 @@ p {
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
+
+/*----------------- PAGE ADMIN -------------------------*/
+
+.h2 {
+  color: white;
+  display: flex;
+}
+
+form {
+  background-color: aliceblue;
+  width: 30%;
+}

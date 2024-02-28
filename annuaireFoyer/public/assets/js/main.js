@@ -97,6 +97,9 @@ const app = {
                 this.listeBenevolesFiltered = this.listeBenevoles;
             }
         },
+        adminPortal() {
+            window.location.href = 'admin.html';
+        }
      
         
 
