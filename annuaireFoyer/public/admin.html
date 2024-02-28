@@ -20,7 +20,7 @@
         </section>
     </header>
 
-    <main>
+    <main id="app">
         <section class="addForm">
             <div class="addTitle">
                 <h2 class="h2">Ajoutez un bénévole</h2>
@@ -28,41 +28,30 @@
         </section>
 
             <section class="beneform">
-                <form> 
+                <form id="addBenevoleForm" @submit="addBenevole"> 
 
                     <div>
                     <label for="prenom">Pénom</label>
-                    <input type="texte" name="prenom" placeholder="Obligatoire" value="">
+                    <input type="texte" name="prenom" placeholder="Obligatoire"  v-model="newBenevole.nom">
                     </div>
 
                     <div>
-                    <label for="nom">nom</label>
-                    <input type="texte" name="nom" placeholder="Obligatoire" value="">
+                    <label for="nom">Nom</label>
+                    <input type="texte" name="nom" placeholder="Obligatoire" v-model="newBenevole.prenom">
                     </div>
 
                     <div>
                     <label for="telephone">Numéro de téléphone</label>
-                    <input type="texte" name="telephone" placeholder="Obligatoire" value="">
+                    <input type="texte" name="telephone" placeholder="Obligatoire" v-model="newBenevole.telephone">
                     </div>
 
                     <div>
                     <label for="poste">Poste</label>
-                    <input type="texte" name="poste" placeholder="Facultatif" value="">
-                    </div>
+                    <input type="texte" name="poste" placeholder="Facultatif" v-model="newBenevole.poste">
+                    </div>                    
 
-                    <div>
-                    <label for="mail">Mail</label>
-                    <input type="texte" name="mail" placeholder="Facultatif" value="">
-                    </div>
-
-                    <div>
-                    <label for="pass">Mot de passe</label>
-                    <input type="texte" name="pass" placeholder="Facultatif" value="">
-                    </div>
-
-                    <div>
-                    <label for="level">Niveau d'habilitation</label>
-                    <input type="texte" name="level" placeholder="Facultatif" value="">
+                    <div class="inputValider">
+                    <input type="submit" class="button">
                     </div>
 
                 </form>

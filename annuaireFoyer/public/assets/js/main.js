@@ -99,7 +99,15 @@ const app = {
         },
         adminPortal() {
             window.location.href = 'admin.html';
-        }
+        },
+        methods: {
+            async addBenevole() {
+            
+                
+        
+            }
+        },
+        
      
         
 

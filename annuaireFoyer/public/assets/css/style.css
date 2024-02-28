@@ -336,4 +336,6 @@ p {
 form {
   background-color: aliceblue;
   width: 30%;
+  padding: 10px;
+  font-family: 'Sarabun',sans-serif;
 }
