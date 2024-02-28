@@ -10,7 +10,6 @@ body {
 .management {
     display: flex;
     justify-content: space-around;
-    margin-right: 350px;
 }
 
 header {
@@ -27,7 +26,7 @@ header {
 h1 {
   color: #18286A;
   margin-top: 115px;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 1000;
   font-size: 2.625rem;
   line-height: 3.25rem;
@@ -37,7 +36,7 @@ h2, h3 {
     margin-top: 75px;
     margin-left: 100px;
     width: 120%;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 2.625rem;
     line-height: 3.25rem;
@@ -56,15 +55,26 @@ h2, h3 {
   width: 500px;
   border:#FF5623 2px solid;
   border-collapse: collapse;
+  background-color: #F5F6F9;
+}
+
+th {
+  font-size: larger;
+  font-family: 'Montserrat', sans-serif;
 }
 
 th, td {
   background-color: #FEFEFE;
-  font-family: 'Sarabun',sans-serif;
+
 }
 
 td {
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+  font-family: 'Sarabun',sans-serif;
+  color: #17286A;
 }
 
 .logo {
@@ -73,6 +83,7 @@ td {
 
 li {
   color: white;
+  font-family: 'Sarabun',sans-serif;
 }
 
 .optionText {
@@ -80,6 +91,13 @@ li {
 }
 select {
   background-color: #FF5623;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 125%;
+  width: 344px;
+  height: 64px;
+  font-family: 'Montserrat',sans-serif;
 }
 
 .liste {
@@ -98,6 +116,7 @@ select {
     padding: 1rem;
     width: 100%;
     text-align: center;
+    z-index:100;
   }
 
   #modal > article {
@@ -160,5 +179,149 @@ p {
 .benevoleDiv {
   color: white;
   text-align: center;
+}
+
+.white {
+  color: white;
+}
+
+.admin {
+  display: flex;
+  justify-content:end;
+  margin-top: 15px;
+}
+
+.benevoleTab {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* DESIGN BUTTUN */
+
+/* Table button */
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  font-size: 19px;
+  cursor: pointer;
+  color: black;
+  z-index: 1;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #F5AE2C;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn:hover {
+  color: #ffffff;
+  border: 1px solid #F5AE2C;
+}
+
+.btn:hover:before {
+  top: -35%;
+  background-color: #F5AE2C;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn:hover:after {
+  top: -45%;
+  background-color: #F5AE2C;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* Admin Log Button */
+
+.adminLog {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  font-size: 19px;
+  cursor: pointer;
+  color: black;
+  z-index: 1;
+}
+
+.adminLog:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.adminLog:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #73A9CE;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.adminLog:hover {
+  color: #ffffff;
+  border: 1px solid #73A9CE;
+}
+
+.adminLog:hover:before {
+  top: -35%;
+  background-color: #73A9CE;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.adminLog:hover:after {
+  top: -45%;
+  background-color: #73A9CE;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 

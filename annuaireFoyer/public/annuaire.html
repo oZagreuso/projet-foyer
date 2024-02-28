@@ -9,7 +9,7 @@
     <title>Annuaire Bénévoles CRM</title>
 </head>
 
-<body >
+<body>
     <header>
         <section class="benHeader">
             <div class="title">
@@ -20,24 +20,19 @@
             </div>
         </section>
     </header>
-    <main id="app">
-        <div class="nbrBenevole"><h2>Il existe: {{nbBenevole}} bénévoles</h2></div>
-   
+    <main id="app">         
+        <section class="admin">
+            <button class="adminLog" @click="adminVue">Admin</button>
+        </section>  
         <section class="management">
-            <div class="listeNom" >           
-            <ol>
-                <li>Sélectionnez un bénévole</li>
-            </ol>  
-            <select @change="filterBenevole" v-model="inputBenevole" classe="liste">
+            <div class="listeNom" >   
+            <select @change="filterBenevole"  classe="liste">
                 <option class="optionText" value="0"><p class="white">Selectionnez un bénévole</p></option>
-                <option class="optionText" v-for="(benevole, index) in listeBenevoles" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
+                <option class="optionText" v-for="(benevole, index) in listeBenevolesFiltered" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
             </select>
             </div> 
             <div class="listePoste">
-                <ol>
-                    <li>Sélectionnez un responsable</li>
-                </ol>  
-                <select @change="" classe="listeRes">
+                <select @change="filterResponsable" classe="listeRes">
                     <option class="optionText" value="0"><p class="white">Selectionnez un responsable</p></option>
                     <option class="optionText"  v-for="(benevole, index) in listeResponsables" :key="index" :value="benevole.id">{{ benevole.poste }}</option>
                 </select>
@@ -54,26 +49,20 @@
             </thead>
             <tbody>
                 <tr v-for="benevole of listeBenevolesFiltered">
-                    <td>{{ benevole.nom }}</td>
                     <td>{{ benevole.prenom }}</td>
-                    <td><button :data-id="benevole.id" @click="openModal" class="button">Fiche</button></td>                           
+                    <td>{{ benevole.nom }}</td>
+                    <td><button :data-id="benevole.id" @click="openModal" class="btn">Info &#9993</button></td>                           
                 </tr>
             </tbody>
         </table>
         </section>
-        <section class="benevoleDiv">
-            <div class="benevole" v-for="benevole of listeBenevoles">                            
-                    <span>Id :</span> {{ benevole.id }}
-                    <span>Téléphone :</span> {{ benevole.telephone }}
-                    <span>Poste : </span> {{ benevole.poste }}
-            </div>
-        </section>
+        
         <div id="modal" ref="modal">
             <article v-if="selectedBenevole != null">
-                <button id="btn" class="custom-button" @click="closeModal">Fermer</button>
+                <button id="btnModal"  @click="closeModal">Fermer</button>
                 <header>
-                    <p>{{ selectedBenevole.nom }}</p>                   
-                    <p>{{ selectedBenevole.prenom }}</p>
+                    <p>{{ selectedBenevole.prenom }}</p>                   
+                    <p>{{ selectedBenevole.nom }}</p>
                     <p>{{ selectedBenevole.telephone }}</p>
                     <p>{{ selectedBenevole.poste }}</p>
                 </header>

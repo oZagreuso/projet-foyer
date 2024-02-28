@@ -12,7 +12,8 @@ const app = {
             selectedBenevole: null,
             benevoleChoice: null,
             responsable: null,
-            targetedBenevole: null
+            targetedBenevole: null,
+            targetedResponsable: null
          
         }
     },
@@ -61,13 +62,42 @@ const app = {
         
         filterBenevole(event) {
             if (parseInt(event.target.value) > 0) {
-                this.listeBenevolesFiltered = this.listeBenevoles.filter(benevole => this.inputBenevole.includes(benevole.id));
+                console.log(event.target.value);
+                this.targetedBenevole = event.target.value;
+                this.listeBenevolesFiltered = this.listeBenevoles.filter(benevole => benevole.id == this.targetedBenevole);
+                console.log(this.listeBenevolesFiltered);
+                console.log(this.listeBenevoles);
+                setTimeout(() => {
+                    this.resetFilter();
+                }, 5000);
             }
             else {
                 this.listeBenevolesFiltered = this.listeBenevoles;
             }
         },
-        
+        resetFilter() {
+            
+            this.listeBenevolesFiltered = [...this.listeBenevoles];
+            this.targetedBenevole = null;       
+            const selectElement = document.querySelector('.liste');
+            selectElement.selectedIndex = 0;
+        },
+        filterResponsable(event) {
+            if (parseInt(event.target.value) > 0) {
+                console.log(event.target.value);
+                this.targetedResponsable = event.target.value;
+                this.listeBenevolesFiltered = this.listeBenevoles.filter(benevole => benevole.id == this.targetedResponsable);
+                console.log(this.listeBenevolesFiltered);
+                console.log(this.listeBenevoles);
+                setTimeout(() => {
+                    this.resetFilter();
+                }, 5000);
+            }
+            else {
+                this.listeBenevolesFiltered = this.listeBenevoles;
+            }
+        },
+     
         
 
     
