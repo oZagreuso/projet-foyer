@@ -11,9 +11,17 @@ const app = {
             listeResponsables: [],
             selectedBenevole: null,
             benevoleChoice: null,
+            selectedDeleteBenevole: null,
+            benevoleDeleteChoice: null,
             responsable: null,
             targetedBenevole: null,
-            targetedResponsable: null
+            targetedResponsable: null,
+            newBenevole: {
+                nom: '',
+                prenom: '',
+                telephone: '',
+                poste: ''
+            }
          
         }
     },
@@ -46,6 +54,16 @@ const app = {
         closeModal() {
             this.$refs.modal.style.display ='none';
         },
+        openDeleteModal(event) {
+            let benevoleId = event.target.value;
+            this.selectedDeleteBenevole = this.listeBenevoles.find(x => x.id == benevoleId);
+            console.log(this.$refs);
+            this.$refs.deleteModal.style.display = 'block';
+            console.log(this.selectedDeleteBenevole);
+        },
+        closeDeleteModal() {
+            this.$refs.deleteModal.style.display ='none';
+        },
         selectBenevole(event) {
             console.log(event.target.value);
             if(parseInt(event.target.value) > 0 ) {
@@ -55,6 +73,15 @@ const app = {
             }
             
         },
+        selectDeleteBenevole(event) {
+            console.log(event.target.value);
+            if(parseInt(event.target.value) > 0 ) {
+                this.benevoleDeleteChoice = this.listeBenevoles.find(x => x.id == event.target.value);
+            } else {
+                this.benevoleDeleteChoice = null;
+            }
+        },
+         
         createListeResponsables() {
             this.listeResponsables = this.listeBenevoles.filter(benevole => benevole.poste !== undefined);
             console.log(this.listeResponsables);
@@ -100,34 +127,48 @@ const app = {
         adminPortal() {
             window.location.href = 'admin.html';
         },
-        methods: {
-            async addBenevole() {
+     
+        async addBenevole() {
             
-                
-        
+            const apiBaseUrl = 'http://localhost:3000/api';  
+            const addBenevoleUrl = `${apiBaseUrl}/benevoles`;
+    
+            try {
+                const response = await fetch(addBenevoleUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.newBenevole),
+                });
+    
+                if (response.ok) {
+                 
+                    this.listeBenevoles.push(this.newBenevole);
+    
+                   
+                    this.newBenevole = {
+                        nom: '',
+                        prenom: '',
+                        poste: '',
+                        
+                    }
+                } else {
+                    console.error('Erreur lors de l\'ajout du bénévole à la base de données.');
+                }
+            } catch (error) {
+                console.error('Erreur de connexion à l\'API:', error.message);
             }
         },
+              
         
      
-        
-
-    
-        
-        
-      
-        
-        
-   
-            },    computed: { 
+            },    
+            computed: { 
                 nbBenevole() {
-                return this.listeBenevoles.length;
-        
-         
-        }
-        
-        
-  
-
+                        return this.listeBenevoles.length;
+                            }
+       
     }
 }
     

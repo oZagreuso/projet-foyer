@@ -149,10 +149,6 @@ select {
     text-align: left;
   }  
 
-  #modal .addVille {
-    padding: 1rem;
-    text-align: left;
-  }
 
   #modal input[type="text"] {
     border: 1px solid lightgreen;
@@ -335,7 +331,84 @@ p {
 
 form {
   background-color: aliceblue;
-  width: 30%;
+  width: 80%;
   padding: 10px;
+  margin-left: 125px;
   font-family: 'Sarabun',sans-serif;
+}
+
+.addTitle {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteListe {
+  margin-right: 290px;
+}
+
+/*  DELETE MODAL */
+
+
+#deleteModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF99;
+  margin: auto;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  z-index:100;
+}
+
+#deleteModal > article {
+  border: 1px solid #327859;
+  box-shadow: 0 0 10rem 0 #D1E7DD;
+  width: 50rem;
+  height: 60rem;
+  margin: 16rem auto;
+  background-color: #18286A;
+  color: white;
+  font-family: 'Sarabun',sans-serif;
+  padding: 1rem;
+  /*overflow-y: scroll;*/
+}
+
+#deleteModal > article header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF33;
+  padding: .1rem 1rem;
+}
+
+#deleteModal h2, #modal h3 {
+  margin: 0;
+  padding: .5rem 1rem;
+}
+
+#deleteModal ul {
+  text-align: left;
+}  
+
+
+#deleteModal input[type="text"] {
+  border: 1px solid lightgreen;
+  color: white;
+  background-color: #18286A;
+  padding: .5rem 1.5rem;
+}
+
+#deleteModal .btnDeleteModal {
+  background-color: #C82A50;
+  color: white;
+  font-family: 'Sarabun',sans-serif;
+  margin-bottom: 10px;
 }

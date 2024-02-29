@@ -23,10 +23,12 @@
     <main id="app">
         <section class="addForm">
             <div class="addTitle">
-                <h2 class="h2">Ajoutez un bénévole</h2>
+                <h2 class="h2">Ajouter un bénévole</h2>
+                <h2 class="h2">Supprimer un bénévole</h2>
             </div>
         </section>
 
+            <div class="container">
             <section class="beneform">
                 <form id="addBenevoleForm" @submit="addBenevole"> 
 
@@ -54,10 +56,27 @@
                     <input type="submit" class="button">
                     </div>
 
-                </form>
-
-
+                </form>            
         </section>
+        <div class="deleteListe" >   
+            <select @change="openDeleteModal"  classe="deleteListe">
+                <option class="optionText" value="0"><p class="white">Selectionnez un bénévole</p></option>
+                <option class="optionText" v-for="(benevole, index) in listeBenevolesFiltered" :key="index" :value="benevole.id">{{ benevole.prenom }} {{ benevole.nom }}</option>
+            </select>
+            </div> 
+        </div>
+        <div id="deleteModal" ref="deleteModal">
+            <article v-if="selectedDeleteBenevole != null">
+                <button id="btnDeleteModal"  @click="closeDeleteModal">Fermer</button>
+                <header>
+                    <p>{{  selectedDeleteBenevole.prenom }}</p>                   
+                    <p>{{  selectedDeleteBenevole.nom }}</p>
+                    <p>{{  selectedDeleteBenevole.telephone }}</p>
+                    <p>{{  selectedDeleteBenevole.poste }}</p>
+                    <p><button id="btnDelete" @click="">Supprimer</p></button>
+                </header>
+            </article>          
+        </div>  
 
     </main>
 </body>
