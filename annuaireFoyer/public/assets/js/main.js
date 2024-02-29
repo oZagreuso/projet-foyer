@@ -16,6 +16,7 @@ const app = {
             responsable: null,
             targetedBenevole: null,
             targetedResponsable: null,
+            deleteId: null,
             newBenevole: {
                 nom: '',
                 prenom: '',
@@ -46,7 +47,7 @@ const app = {
         },
        
         openModal(event) {
-            let benevoleId = event.target.dataset.id;
+            let benevoleId = event.target.dataset.id;       
             this.selectedBenevole = this.listeBenevoles.find(x => x.id == benevoleId);
             console.log(this.$refs);
             this.$refs.modal.style.display = 'block';
@@ -56,6 +57,7 @@ const app = {
         },
         openDeleteModal(event) {
             let benevoleId = event.target.value;
+            this.deleteId = benevoleId;
             this.selectedDeleteBenevole = this.listeBenevoles.find(x => x.id == benevoleId);
             console.log(this.$refs);
             this.$refs.deleteModal.style.display = 'block';
@@ -126,8 +128,34 @@ const app = {
         },
         adminPortal() {
             window.location.href = 'admin.html';
-        },
-     
+        },  
+        async deleteBenevole() {
+            /*console.log(event);
+            let benevoleDeleteId = event.target.value;
+            console.log(benevoleDeleteId);*/
+                if (window.confirm('Êtes-vous sûr de vouloir supprimer ce bénévole?')) {
+          
+                    const apiBaseUrl = 'http://localhost:3000/api';  
+                    const deleteBenevoleUrl = `${apiBaseUrl}/benevoles/${this.deleteId}`
+        
+                    try {
+                        const response = await fetch(deleteBenevoleUrl, {
+                            method: 'DELETE',
+                        })
+        
+                        if (response.ok) {
+                       
+                            this.listeBenevoles = this.listeBenevoles.filter(benevole => benevole.id !== this.deleteId)
+                            this.closeDeleteModal(); 
+                        } else {
+                            console.error('Echec de suppression!');
+                        }
+                    } catch (error) {
+                        console.error('Erreur de connexion à l\'API:', error.message)
+                    }
+                
+            }
+        },    
         async addBenevole() {
             
             const apiBaseUrl = 'http://localhost:3000/api';  
@@ -144,8 +172,7 @@ const app = {
     
                 if (response.ok) {
                  
-                    this.listeBenevoles.push(this.newBenevole);
-    
+                    this.listeBenevoles.push(this.newBenevole);    
                    
                     this.newBenevole = {
                         nom: '',
